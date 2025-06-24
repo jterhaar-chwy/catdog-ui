@@ -1,19 +1,22 @@
-FROM 278833423079.dkr.ecr.us-east-1.amazonaws.com/plat/plat/nodejs-baseimg:20
+FROM node:18
 
 WORKDIR /app
-
-# Copy Yarn configuration and package files
-COPY .yarnrc.yml ./
-COPY package.json ./
-COPY yarn.lock ./
-COPY .yarn ./.yarn
 
 # Set up authentication for private registry
 ARG YARN_NPM_AUTH_TOKEN
 ENV YARN_NPM_AUTH_TOKEN=$YARN_NPM_AUTH_TOKEN
 
+# Enable Yarn 3.x (corepack)
+RUN corepack enable
+
+# Copy package files
+COPY .yarnrc.yml ./
+COPY package.json ./
+COPY yarn.lock ./
+COPY .yarn/releases ./.yarn/releases
+
 # Install dependencies
-RUN yarn install --frozen-lockfile
+RUN yarn install --immutable
 
 # Copy source code
 COPY . .

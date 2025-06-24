@@ -1,0 +1,218 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+// Hero Section - F Shape: Second horizontal scan
+.heroSection {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  color: white;
+}
+
+.heroHeading {
+  color: white !important;
+  
+  h2 {
+    color: white !important;
+  }
+  
+  p {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+}
+
+.heroActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+// Metrics Grid
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.metricCard {
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+}
+
+.metricHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.metricTitle {
+  color: #6c757d;
+  margin: 0;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.metricStatus {
+  font-size: 12px;
+}
+
+.statusPositive {
+  color: #28a745;
+}
+
+.statusWarning {
+  color: #ffc107;
+}
+
+.statusNegative {
+  color: #dc3545;
+}
+
+.metricValue {
+  font-size: 2.5rem;
+  color: #212529;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.metricChange {
+  color: #6c757d;
+  font-size: 13px;
+}
+
+// Dashboard Grid
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dashboardCard {
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.cardHeading {
+  margin-bottom: 1.5rem !important;
+}
+
+// Query List
+.queryList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.queryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 3px solid #28a745;
+}
+
+.queryInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.queryText {
+  color: #495057;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 12px;
+}
+
+.queryTime {
+  color: #6c757d;
+  font-size: 11px;
+}
+
+.queryStatus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.querySuccess {
+  background: #d4edda;
+  color: #155724;
+}
+
+// Health Grid
+.healthGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.healthItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.healthLabel {
+  color: #495057;
+  min-width: 80px;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.healthBar {
+  flex: 1;
+  height: 8px;
+  background: #e9ecef;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.healthProgress {
+  height: 100%;
+  background: linear-gradient(90deg, #28a745 0%, #007bff 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.healthValue {
+  color: #495057;
+  font-weight: 600;
+  min-width: 40px;
+  text-align: right;
+  font-size: 0.875rem;
+} 

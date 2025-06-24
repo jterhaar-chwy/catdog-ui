@@ -1,0 +1,493 @@
+.gitDashboard {
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #333;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: white;
+  
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+  }
+}
+
+/* Endpoint Selection */
+.endpointSelector {
+  margin-bottom: 2rem;
+  
+  h3 {
+    color: white;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+}
+
+.endpointGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.endpointButton {
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  text-align: left;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    background: rgba(255, 255, 255, 1);
+  }
+  
+  &.active {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.endpointLabel {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.endpointDescription {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Status Bar */
+.statusBar {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  color: #2196F3;
+  font-weight: 500;
+  
+  .spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e3f2fd;
+    border-top: 2px solid #2196F3;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 0.5rem;
+  }
+}
+
+.error {
+  color: #f44336;
+  font-weight: 500;
+}
+
+.success {
+  color: #4CAF50;
+  font-weight: 500;
+  
+  .timestamp {
+    color: #666;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+  }
+  
+  .executionTime {
+    background: #e8f5e8;
+    color: #2e7d32;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+  }
+}
+
+/* Data Section */
+.dataSection {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Branch Information */
+.branchSection {
+  h3 {
+    color: #4CAF50;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+}
+
+.branchGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.branchCard, .commitCard, .statusCard {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border-left: 4px solid #4CAF50;
+  
+  strong {
+    display: block;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+.currentBranch {
+  background: #4CAF50;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.remoteUrl {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: #666;
+  word-break: break-all;
+}
+
+.commitDetails {
+  div {
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.statusDetails {
+  .hasChanges {
+    color: #ff9800;
+    font-weight: bold;
+  }
+  
+  .clean {
+    color: #4CAF50;
+    font-weight: bold;
+  }
+  
+  div {
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+  }
+}
+
+.branchList {
+  margin-top: 1.5rem;
+  
+  strong {
+    display: block;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+}
+
+.branches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.branchTag {
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  
+  &.current {
+    background: #4CAF50;
+    color: white;
+  }
+}
+
+/* Workflows */
+.workflowSection {
+  h3 {
+    color: #ff9800;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+}
+
+.workflowGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.workflowCard {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border-left: 4px solid #ff9800;
+}
+
+.workflowHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  
+  strong {
+    color: #333;
+    font-size: 1.1rem;
+  }
+}
+
+.workflowState {
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  
+  &.active {
+    background: #4CAF50;
+    color: white;
+  }
+  
+  &.inactive {
+    background: #9e9e9e;
+    color: white;
+  }
+}
+
+.workflowDetails {
+  div {
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    color: #666;
+    
+    a {
+      color: #2196F3;
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+/* Workflow Runs */
+.runsSection {
+  h3 {
+    color: #2196F3;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+}
+
+.runsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.5rem;
+}
+
+.runCard {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border-left: 4px solid #2196F3;
+}
+
+.runHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  
+  strong {
+    color: #333;
+    font-size: 1.1rem;
+    flex: 1;
+  }
+}
+
+.runStatus {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: flex-end;
+}
+
+.status, .conclusion {
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  
+  &.completed {
+    background: #4CAF50;
+    color: white;
+  }
+  
+  &.in_progress {
+    background: #ff9800;
+    color: white;
+  }
+  
+  &.queued {
+    background: #9e9e9e;
+    color: white;
+  }
+  
+  &.success {
+    background: #4CAF50;
+    color: white;
+  }
+  
+  &.failure {
+    background: #f44336;
+    color: white;
+  }
+  
+  &.cancelled {
+    background: #9e9e9e;
+    color: white;
+  }
+}
+
+.runDetails {
+  div {
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+}
+
+.runLink {
+  color: #2196F3;
+  text-decoration: none;
+  font-weight: 500;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Data Preview */
+.dataPreview {
+  background: #263238;
+  color: #00e676;
+  padding: 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* Info Panel */
+.infoPanel {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  
+  h4 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+  
+  p {
+    color: #666;
+    margin-top: 1rem;
+    
+    code {
+      background: #f5f5f5;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.featureList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.5rem;
+  
+  div {
+    color: #666;
+    font-size: 0.95rem;
+    padding: 0.3rem 0;
+  }
+}
+
+/* Animations */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gitDashboard {
+    padding: 1rem;
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .endpointGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .branchGrid, .workflowGrid, .runsGrid {
+    grid-template-columns: 1fr;
+  }
+} 

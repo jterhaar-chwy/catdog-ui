@@ -1,0 +1,47 @@
+# Windows-based Dockerfile for Next.js frontend
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
+
+# Set shell to PowerShell
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+# Install Chocolatey package manager
+RUN Set-ExecutionPolicy Bypass -Scope Process -Force; \
+    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; \
+    iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+# Install Node.js and Yarn
+RUN choco install -y nodejs --version=18.19.0 ; \
+    choco install -y yarn ; \
+    refreshenv
+
+# Set environment variables
+ENV PATH="C:\tools\nodejs;C:\ProgramData\chocolatey\lib\yarn\bin;$PATH"
+
+# Set working directory
+WORKDIR C:\app
+
+# Set up authentication for private registry
+ARG YARN_NPM_AUTH_TOKEN
+ENV YARN_NPM_AUTH_TOKEN=$YARN_NPM_AUTH_TOKEN
+
+# Copy package files first for better caching
+COPY .yarnrc.yml ./
+COPY package.json ./
+COPY yarn.lock ./
+COPY .yarn/releases ./.yarn/releases
+
+# Enable Yarn and install dependencies
+RUN corepack enable ; \
+    yarn install --immutable
+
+# Copy source code
+COPY . .
+
+# Build the application
+RUN yarn build
+
+# Expose port
+EXPOSE 3000
+
+# Start the application
+CMD ["yarn", "start"] 
